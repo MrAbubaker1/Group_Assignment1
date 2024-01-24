@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="app.js"></script>
+  <title>Weight</title>
+</head>
+<body class="bg-gray-100 p-4">
+    
+  <div id="distance" class="mt-4">
+    <form class="conversion-form">
+      <label for="distanceInput" class="block text-gray-700">Enter Distance:</label>
+      <input type="text" id="distanceInput" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500 mt-2">
+  
+      <label for="distanceType" class="block text-gray-700 mt-2">Select Type:</label>
+      <select id="distanceType" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+        <option value="mi">Miles (mi)</option>
+        <option value="km">Kilometers (km)</option>
+      </select>
+  
+      <button type="button" id="distanceButton" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md">Convert</button>
+        <div id="distanceResult" class="mt-4"></div>
+    </form>
+  </div>
+  </html>
+  
+</body>
+</html>

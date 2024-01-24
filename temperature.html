@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="app.js"></script>
+  <title>Weight</title>
+</head>
+<body class="bg-gray-100 p-4">
+
+    <div id="temperature" class="mt-4">
+        <form class="conversion-form">
+          <label for="temperatureInput" class="block text-gray-700">Enter Temperature:</label>
+          <input type="text" id="temperatureInput" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500 mt-2">
+      
+          <label for="temperatureType" class="block text-gray-700 mt-2">Select Type:</label>
+          <select id="temperatureType" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
+            <option value="C">Celsius (C)</option>
+            <option value="F">Fahrenheit (F)</option>
+          </select>
+      
+          <button type="button" id="temperatureButton" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded-md">Convert</button>
+                <div id="temperatureResult" class="mt-4"></div>
+        </form>
+      </div>
+      
+  </html>
+  
+</body>
+</html>
