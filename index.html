@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<html lang="en">
+<script src="app.js"></script>
+<title>converter</title>
+
+<body>
+    <h1>unit converter</h1>
+    <input type="number" id="input">
+
+    <select id="x">
+        <option value="lbs">lbs</option>
+        <option value="kgs">kgs</option>
+        <option value="m">miles</option>
+        <option value="km">kilometres</option>
+        <option value="c">celcius</option>
+        <option value="f">farenheit</option>
+    </select>
+
+    <select id="y">
+        <option value="lbs">lbs</option>
+        <option value="kgs">kgs</option>
+        <option value="m">miles</option>
+        <option value="km">kilometres</option>
+        <option value="c">celcius</option>
+        <option value="f">farenheit</option>
+    </select>
+
+    <button onclick="bindConversion()">convert</button>
+
+    <input type="text" id="result" readonly></input>
+</body>
+
+</html>
