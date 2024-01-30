@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Conversion Table</title>
+</head>
+<body>
+    <div class="bg-gray-900 text-white p-4">
+        <div class="flex flex-col items-center">
+            <h1 class="text-4xl font-bold text-white">Conversion Calculator </h1>
+        </div>
+        <div class="relative inline-block group">
+            <!-- Add id attribute to the button -->
+            <button id="dropdown-button" class="p-2 focus:outline-none">
+                <div class="h-1 w-6 bg-white mb-1"></div>
+                <div class="h-1 w-6 bg-white mb-1"></div>
+                <div class="h-1 w-6 bg-white"></div>
+            </button>
+            <!-- Add id attribute to the ul element -->
+            <ul id="dropdown-content" class="absolute hidden bg-gray-800 mt-2 p-2 space-y-2 group-hover:block">
+                <li><a href="#" class="hover:text-gray-300" onclick="selectConversion('weight')">Weight</a></li>
+                <li><a href="#" class="hover:text-gray-300" onclick="selectConversion('distance')">Distance</a></li>
+                <li><a href="#" class="hover:text-gray-300" onclick="selectConversion('temperature')">Temperature</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Conversion Table -->
+    <div class="flex flex-col justify-center items-center h-screen">
+        <div class="bg-gray-200 p-4 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold text-gray-800" id="conversionTitle">Select a Conversion</h2>
+            
+            <!-- Weight Conversion -->
+            <div class="mt-4" id="weightConversion" style="display: none;">
+                <label for="weightValue" class="text-gray-600">Enter a weight value:</label>
+                <input type="number" id="weightValue" class="w-full border border-gray-400 rounded-md p-2 mt-1">
+                <div class="mt-2">
+                    <label for="weightUnit" class="text-gray-600">Select a unit:</label>
+                    <select id="weightUnit" class="w-full border border-gray-400 rounded-md p-2 mt-1">
+                        <option value="kg">Kilograms (kg)</option>
+                        <option value="lbs">Pounds (lbs)</option>
+                    </select>
+                </div>
+                <p class="mt-2 text-gray-600">Converted Value: <span id="weightConvertedValue">0</span></p>
+
+                <button class="mt-4 p-2 bg-red-500 text-white rounded-md" onclick="clearWeightInput()">Clear</button>
+            </div>
+            
+            <!-- Distance Conversion -->
+            <div class="mt-4" id="distanceConversion" style="display: none;">
+                <label for="distanceValue" class="text-gray-600">Enter a distance value:</label>
+                <input type="number" id="distanceValue" class="w-full border border-gray-400 rounded-md p-2 mt-1">
+                <div class="mt-2">
+                    <label for="distanceUnit" class="text-gray-600">Select a unit:</label>
+                    <select id="distanceUnit" class="w-full border border-gray-400 rounded-md p-2 mt-1">
+                        <option value="miles">Miles (mi)</option>
+                        <option value="kilometers">Kilometers (km)</option>
+                    </select>
+                </div>
+                <p class="mt-2 text-gray-600">Converted Value: <span id="distanceConvertedValue">0</span></p>
+
+                <button class="mt-4 p-2 bg-red-500 text-white rounded-md" onclick="clearDistanceInput()">Clear</button>
+            </div>
+            
+            <!-- Temperature Conversion -->
+            <div class="mt-4" id="temperatureConversion" style="display: none;">
+                <label for="temperatureValue" class="text-gray-600">Enter a temperature value:</label>
+                <input type="number" id="temperatureValue" class="w-full border border-gray-400 rounded-md p-2 mt-1">
+                <div class="mt-2">
+                    <label for="temperatureUnit" class="text-gray-600">Select a unit:</label>
+                    <select id="temperatureUnit" class="w-full border border-gray-400 rounded-md p-2 mt-1">
+                        <option value="degrees">Degrees Celsius (°C)</option>
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                    </select>
+                </div>
+                <p class="mt-2 text-gray-600">Converted Value: <span id="temperatureConvertedValue">0</span></p>
+                <button class="mt-4 p-2 bg-red-500 text-white rounded-md" onclick="clearTemperatureInput()">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dropdownButton = document.getElementById('dropdown-button');
+        const dropdownContent = document.getElementById('dropdown-content');
+
+        dropdownButton.addEventListener('click', () => {
+            dropdownContent.classList.toggle('hidden');
+        });
+
+        // Add a click event listener on the document to close the dropdown when clicking outside of it
+        document.addEventListener('click', (event) => {
+            if (!dropdownButton.contains(event.target) && !dropdownContent.contains(event.target)) {
+                dropdownContent.classList.add('hidden');
+            }
+        });
+
+        // Function to handle conversion selection
+        function selectConversion(conversionType) {
+            // Hide all conversion sections
+            document.getElementById('weightConversion').style.display = 'none';
+            document.getElementById('distanceConversion').style.display = 'none';
+            document.getElementById('temperatureConversion').style.display = 'none';
+
+            // Set the title based on the selected conversion
+            const conversionTitle = document.getElementById('conversionTitle');
+            if (conversionType === 'weight') {
+                conversionTitle.textContent = 'Weight Conversion';
+                document.getElementById('weightConversion').style.display = 'block';
+            } else if (conversionType === 'distance') {
+                conversionTitle.textContent = 'Distance Conversion';
+                document.getElementById('distanceConversion').style.display = 'block';
+            } else if (conversionType === 'temperature') {
+                conversionTitle.textContent = 'Temperature Conversion';
+                document.getElementById('temperatureConversion').style.display = 'block';
+            }
+        }
+
+        // Conversion logic for weight
+        let weightValue = document.getElementById('weightValue');
+        let weightUnit = document.getElementById('weightUnit');
+        let weightConvertedValue = document.getElementById('weightConvertedValue');
+
+        function clearWeightInput() {
+            document.getElementById('weightValue').value = '';
+            document.getElementById('weightConvertedValue').textContent = '0';
+        }
+
+        weightValue.addEventListener('input', () => {
+            const inputValue = parseFloat(weightValue.value);
+            const selectedUnit = weightUnit.value;
+            
+
+            if (!isNaN(inputValue)) {
+                if (selectedUnit === 'kg') {
+                    // Convert to pounds
+                    const convertedResult = inputValue * 2.20462;
+                    weightConvertedValue.textContent = convertedResult.toFixed(2) + 'lbs';
+                } else if (selectedUnit === 'lbs') {
+                    // Convert to kilograms
+                    const convertedResult = inputValue / 2.20462;
+                    weightConvertedValue.textContent = convertedResult.toFixed(2) + 'kg';
+                }
+            } else {
+                weightConvertedValue.textContent = 'Invalid input';
+            }
+        });
+
+        // Conversion logic for distance
+        let distanceValue = document.getElementById('distanceValue');
+        let distanceUnit = document.getElementById('distanceUnit');
+        let distanceConvertedValue = document.getElementById('distanceConvertedValue');
+
+        
+        function clearDistanceInput() {
+            document.getElementById('distanceValue').value = '';
+            document.getElementById('distanceConvertedValue').textContent = '0';
+        }
+        distanceValue.addEventListener('input', () => {
+            const inputValue = parseFloat(distanceValue.value);
+            const selectedUnit = distanceUnit.value;
+
+            function clearDistanceInput() {
+                document.getElementById('distanceValue').value = '';
+                document.getElementById('distanceConvertedValue').textContent = '0';
+            }
+
+            if (!isNaN(inputValue)) {
+                if (selectedUnit === 'miles') {
+                    // Convert to kilometers
+                    const convertedResult = inputValue * 1.60934;
+                    distanceConvertedValue.textContent = convertedResult.toFixed(2) + 'km';
+                } else if (selectedUnit === 'kilometers') {
+                    // Convert to miles
+                    const convertedResult = inputValue / 1.60934;
+                    distanceConvertedValue.textContent = convertedResult.toFixed(2) + 'miles';
+                }
+            } else {
+                distanceConvertedValue.textContent = 'Invalid input';
+            }
+        });
+
+        // Conversion logic for temperature
+        let temperatureValue = document.getElementById('temperatureValue');
+        let temperatureUnit = document.getElementById('temperatureUnit');
+        let temperatureConvertedValue = document.getElementById('temperatureConvertedValue');
+
+        function clearTemperatureInput() {
+            document.getElementById('temperatureValue').value = '';
+            document.getElementById('temperatureConvertedValue').textContent = '0';
+        }
+        
+        temperatureValue.addEventListener('input', () => {
+            const inputValue = parseFloat(temperatureValue.value);
+            const selectedUnit = temperatureUnit.value;
+
+            if (!isNaN(inputValue)) {
+                if (selectedUnit === 'degrees') {
+                    // Convert to Fahrenheit
+                    const convertedResult = (inputValue * 9/5) + 32;
+                    temperatureConvertedValue.textContent = convertedResult.toFixed(2) + ' °F';
+                } else if (selectedUnit === 'fahrenheit') {
+                    // Convert to degrees Celsius
+                    const convertedResult = (inputValue - 32) * 5/9;
+                    temperatureConvertedValue.textContent = convertedResult.toFixed(2) + ' °C';
+                }
+            } else {
+                temperatureConvertedValue.textContent = 'Invalid input';
+            }
+        });
+    </script>
+</body>
+</html>
