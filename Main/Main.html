@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="flex justify-center items-center h-screen bg-gray-100">
+    <nav class="bg-black text-white p-4 flex justify-between items-center w-full">
+        <h1 class="text-4xl font-bold">Conversion</h1>
+        <!-- Assuming the main selection page is "index.html" -->
+        <a href="index.html" class="text-xl hover:underline">Home</a>
+    </nav>
+    
+    <div class="text-white p-4">
+        <div class="relative inline-block w-full"> <!-- This is the parent container with full width -->
+            <div id="dropdown-button" class="bg-gray-200 p-4 rounded-lg shadow-md cursor-pointer text-center" role="button" tabindex="0">
+                <h2 class="text-2xl font-bold text-gray-800">Select a Conversion</h2>
+            </div>
+            <div class="dropdown-menu hidden absolute left-1/2 transform -translate-x-1/2 bg-gray-200 mt-2 p-4 space-y-2 rounded-lg shadow-md w-3/4 text-lg"> <!-- w-3/4 for 75% width, centered with left-1/2 and -translate-x-1/2 -->
+                <a href="/Weight/Weight.html" class="block text-gray-800 hover:bg-gray-300 p-2 rounded text-center">Weight</a>
+                <a href="/Distance/Distance.html" class="block text-gray-800 hover:bg-gray-300 p-2 rounded text-center">Distance</a>
+                <a href="/Temperature/Temperature.html" class="block text-gray-800 hover:bg-gray-300 p-2 rounded text-center">Temperature</a>
+            </div>
+        </div>
+    </div>
+    
+       
+    <script src="main.js"></script>
+</body>
+</html>
