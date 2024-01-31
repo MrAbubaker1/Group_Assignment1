@@ -115,7 +115,7 @@ const handleArrayConversion = (type) => {
 
 
 
-const getConversionFunction = (type, fromUnit, toUnit) => {
+const getConversionFunction = (type, fromUnit) => {
     switch (type) {
         case 'weight':
             return (fromUnit === 'lb') ? value => poundsToKilograms(value).toFixed(4) : value => kilogramsToPounds(value).toFixed(2);
