@@ -122,7 +122,7 @@ const handleArrayConversion = (type) => {
 };
 
 
-
+// This function retrieves the appropriate conversion function based on the conversion type and the input unit. The returned function can be used to convert a single value.
 const getConversionFunction = (type, fromUnit) => {
     switch (type) {
         case 'weight':
