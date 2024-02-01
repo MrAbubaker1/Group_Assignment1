@@ -1,3 +1,4 @@
+//Event listeners for convert buttons
 document.addEventListener('DOMContentLoaded', function () {
     const weightButton = document.getElementById('weightButton');
     if (weightButton) {
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+//Conversion functions
 const poundsToKilograms = (pounds) => {
     return pounds * 0.45359237;
 };
@@ -66,6 +68,10 @@ const fahrenheitToCelsius = (fahrenheit) => {
     return (fahrenheit - 32) * 5/9;
 };
 
+
+// This function handles unit conversion for a given type (weight, distance, or temperature).
+// It does this by detecting whether the input string contains multiple values separated by commas if it does it calculates the values using the handleArrayConversion function for array processing. 
+// Or it converts single values using the appropriate conversion function and updates the result label to display it on the webpage
 const handleConversion = (type) => {
     const inputString = document.getElementById(`${type}Input`).value;
     const fromUnit = document.getElementById(`${type}Type`).value;
@@ -77,7 +83,8 @@ const handleConversion = (type) => {
     }
 
     const inputValue = parseFloat(inputString);
-    let result, toUnit;
+    let result;
+    let toUnit;
 
     if (type === 'temperature') {
         toUnit = (fromUnit === 'C') ? 'F' : 'C';
@@ -94,7 +101,8 @@ const handleConversion = (type) => {
     resultContainer.innerHTML = unitLabel;
 };
 
-
+// This function handles calculating multiple values seperated by commans for the given type. 
+// It then takes that input value and uses the correct conversion function to make a formatted result to display on the webpage. 
 const handleArrayConversion = (type) => {
     const inputString = document.getElementById(`${type}Input`).value;
     const fromUnit = document.getElementById(`${type}Type`).value;
@@ -118,11 +126,11 @@ const handleArrayConversion = (type) => {
 const getConversionFunction = (type, fromUnit) => {
     switch (type) {
         case 'weight':
-            return (fromUnit === 'lb') ? value => poundsToKilograms(value).toFixed(4) : value => kilogramsToPounds(value).toFixed(2);
+            return (fromUnit === 'lb') ? value => poundsToKilograms(value).toFixed(4) : value => kilogramsToPounds(value).toFixed(4);
         case 'distance':
-            return (fromUnit === 'mi') ? value => milesToKilometers(value).toFixed(4) : value => kilometersToMiles(value).toFixed(2);
+            return (fromUnit === 'mi') ? value => milesToKilometers(value).toFixed(4) : value => kilometersToMiles(value).toFixed(4);
         case 'temperature':
-            return (fromUnit === 'C') ? value => celsiusToFahrenheit(value).toFixed(4) : value => fahrenheitToCelsius(value).toFixed(2);
+            return (fromUnit === 'C') ? value => celsiusToFahrenheit(value).toFixed(4) : value => fahrenheitToCelsius(value).toFixed(4);
         default:
             throw new Error(`Invalid type: ${type}`);
     }
