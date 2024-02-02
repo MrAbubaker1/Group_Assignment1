@@ -6,29 +6,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
   <script src="app.js"></script>
   <title>Weight</title>
-  <style>
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .conversion-form {
-      width: 350px; 
-      margin: 0 auto;
-    }
-  </style>
 </head>
-<body class="bg-gray-100 p-4">
-  <div id="distance" class="mt-4">
-    <form class="conversion-form">
+<body class="bg-gray-100 p-4 flex items-center justify-center h-screen">
+  <div id="distance">
+    <form class="w-72 border rounded-md p-4">
       <label for="distanceInput" class="block text-gray-700">Enter Distance:</label>
-      <input type="text" id="distanceInput" class="w-full sm:w-48 border rounded-md p-2 focus:outline-none focus:border-blue-500 mt-2">
+      <input type="text" id="distanceInput" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500 mt-2">
   
       <label for="distanceType" class="block text-gray-700 mt-2">Select Type To Convert Between (Miles or Kilometers):</label>
-      <select id="distanceType" class="w-full sm:w-48 border rounded-md p-2 focus:outline-none focus:border-blue-500">
+      <select id="distanceType" class="w-full border rounded-md p-2 focus:outline-none focus:border-blue-500">
         <option value="mi">Miles (mi)</option>
         <option value="km">Kilometers (km)</option>
       </select>
