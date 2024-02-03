@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="app.js"></script>
+  <title>Weight Converter</title>
+</head>
+<body class="bg-gray-200 p-4">
+
+  <nav class="bg-black p-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <h1 class="text-white text-4xl mr-4">Unit Converter</h1>
+      </div>
+      <div class="hidden md:block">
+        <button class="bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300" onclick="goHome()">Go Home</button>
+      </div>
+    </div>
+  </nav>
+  <script>
+    goHome = () => {
+      window.location.href = "index.html"; 
+    }
+  </script>
+
+  <div id="weight" class="flex items-center justify-center h-screen">
+    <form class="w-72 bg-gray-100 border rounded-md p-4 border-gray-700 font-bold">
+      <label for="weightInput" class="block text-gray-700">Enter Weight:</label>
+      <input type="text" id="weightInput" class="w-full bg-gray-200 text-gray-700 border rounded-md p-2 focus:outline-none focus:border-blue-500 mt-2">
+  
+      <label for="weightType" class="block text-gray-700 mt-2">Select The Type To Convert Between (Kilograms or Pounds):</label>
+      <select id="weightType" class="w-full bg-gray-200 text-gray-700 border rounded-md p-2 focus:outline-none focus:border-blue-500">
+        <option value="lb">Pounds (lb)</option>
+        <option value="kg">Kilograms (kg)</option>
+      </select>
+  
+      <button type="button" id="weightButton" class="bg-gray-700 text-white w-full py-2 mt-4 rounded-md">Convert</button>
+  
+      <div id="weightResult" class="mt-4"></div>
+    </form>
+  </div>
+
+</body>
+</html>
