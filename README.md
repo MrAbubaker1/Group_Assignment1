@@ -1,4 +1,4 @@
-# Group_Assignment1 Groups () & 12
+# Group_Assignment1 Groups 9 & 12
 Names: Amadou Diallo, Abdurahman Hassan, FALMATA OBSA, Zain Naeem, Adam Abubaker
 Program Name: Unit Converter 
 Program Description:
