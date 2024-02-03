@@ -76,9 +76,10 @@ const handleConversion = (type) => {
     const inputString = document.getElementById(`${type}Input`).value;
     const fromUnit = document.getElementById(`${type}Type`).value;
 
+    
     if (inputString.includes(',')) {
         handleArrayConversion(type);
-        return;
+        return; 
     }
 
     const inputValue = parseFloat(inputString);
@@ -94,7 +95,7 @@ const handleConversion = (type) => {
         result = conversionFunction(inputValue);
     }
 
-    const unitLabel = `${inputValue} ${fromUnit} is equal to ${result.toFixed(4)} ${toUnit}`;
+    const unitLabel = `${inputValue} ${fromUnit} is equal to ${result} ${toUnit}`;
 
     const resultContainer = document.getElementById(`${type}Result`);
     resultContainer.innerHTML = unitLabel;
@@ -113,7 +114,7 @@ const handleArrayConversion = (type) => {
     const resultArray = inputArray.map(value => {
         const result = conversionFunction(value);
         const toUnit = (type === 'distance') ? (fromUnit === 'mi' ? 'km' : 'mi') : (fromUnit === 'lb') ? 'kg' : (fromUnit === 'C') ? 'F' : 'C';
-        return `${value} ${fromUnit} is equal to ${result.toFixed(4)} ${toUnit}`;
+        return `${value} ${fromUnit} is equal to ${result} ${toUnit}`;
     });
 
     const resultContainer = document.getElementById(`${type}Result`);
