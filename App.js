@@ -1,4 +1,4 @@
-//Event listeners for convert buttons
+// Event listeners for convert buttons
 document.addEventListener('DOMContentLoaded', function () {
     const weightButton = document.getElementById('weightButton');
     if (weightButton) {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-//Conversion functions
+// Conversion functions
 const poundsToKilograms = (pounds) => {
     return pounds * 0.45359237;
 };
@@ -68,18 +68,16 @@ const fahrenheitToCelsius = (fahrenheit) => {
     return (fahrenheit - 32) * 5/9;
 };
 
-
 // This function handles unit conversion for a given type (weight, distance, or temperature).
-// It does this by detecting whether the input string contains multiple values separated by commas if it does it calculates the values using the handleArrayConversion function for array processing. 
+// It does this by detecting whether the input string contains multiple values separated by commas, if it does, it calculates the values using the handleArrayConversion function for array processing.
 // Or it converts single values using the appropriate conversion function and updates the result label to display it on the webpage
 const handleConversion = (type) => {
     const inputString = document.getElementById(`${type}Input`).value;
     const fromUnit = document.getElementById(`${type}Type`).value;
 
-    
     if (inputString.includes(',')) {
         handleArrayConversion(type);
-        return; 
+        return;
     }
 
     const inputValue = parseFloat(inputString);
@@ -95,14 +93,14 @@ const handleConversion = (type) => {
         result = conversionFunction(inputValue);
     }
 
-    const unitLabel = `${inputValue} ${fromUnit} is equal to ${result} ${toUnit}`;
+    const unitLabel = `${inputValue} ${fromUnit} is equal to ${result.toFixed(4)} ${toUnit}`;
 
     const resultContainer = document.getElementById(`${type}Result`);
     resultContainer.innerHTML = unitLabel;
 };
 
-// This function handles calculating multiple values seperated by commans for the given type. 
-// It then takes that input value and uses the correct conversion function to make a formatted result to display on the webpage. 
+// This function handles calculating multiple values separated by commas for the given type.
+// It then takes that input value and uses the correct conversion function to make a formatted result to display on the webpage.
 const handleArrayConversion = (type) => {
     const inputString = document.getElementById(`${type}Input`).value;
     const fromUnit = document.getElementById(`${type}Type`).value;
@@ -114,23 +112,22 @@ const handleArrayConversion = (type) => {
     const resultArray = inputArray.map(value => {
         const result = conversionFunction(value);
         const toUnit = (type === 'distance') ? (fromUnit === 'mi' ? 'km' : 'mi') : (fromUnit === 'lb') ? 'kg' : (fromUnit === 'C') ? 'F' : 'C';
-        return `${value} ${fromUnit} is equal to ${result} ${toUnit}`;
+        return `${value} ${fromUnit} is equal to ${result.toFixed(4)} ${toUnit}`;
     });
 
     const resultContainer = document.getElementById(`${type}Result`);
     resultContainer.innerHTML = resultArray.join('<br>');
 };
 
-
 // This function retrieves the appropriate conversion function based on the conversion type and the input unit. The returned function can be used to convert a single value.
 const getConversionFunction = (type, fromUnit) => {
     switch (type) {
         case 'weight':
-            return (fromUnit === 'lb') ? value => poundsToKilograms(value).toFixed(4) : value => kilogramsToPounds(value).toFixed(4);
+            return (fromUnit === 'lb') ? value => poundsToKilograms(value) : value => kilogramsToPounds(value);
         case 'distance':
-            return (fromUnit === 'mi') ? value => milesToKilometers(value).toFixed(4) : value => kilometersToMiles(value).toFixed(4);
+            return (fromUnit === 'mi') ? value => milesToKilometers(value) : value => kilometersToMiles(value);
         case 'temperature':
-            return (fromUnit === 'C') ? value => celsiusToFahrenheit(value).toFixed(4) : value => fahrenheitToCelsius(value).toFixed(4);
+            return (fromUnit === 'C') ? value => celsiusToFahrenheit(value) : value => fahrenheitToCelsius(value);
         default:
             throw new Error(`Invalid type: ${type}`);
     }
