@@ -111,13 +111,14 @@ const handleArrayConversion = (type) => {
 
     const resultArray = inputArray.map(value => {
         const result = conversionFunction(value);
-        const toUnit = (type === 'distance') ? (fromUnit === 'mi' ? 'km' : 'mi') : (fromUnit === 'lb') ? 'kg' : (fromUnit === 'C') ? 'F' : 'C';
+        const toUnit = (type === 'distance') ? (fromUnit === 'mi' ? 'km' : 'mi') : (type === 'weight') ? (fromUnit === 'lb' ? 'kg' : 'lb') : (fromUnit === 'C') ? 'F' : 'C';
         return `${value} ${fromUnit} is equal to ${result.toFixed(4)} ${toUnit}`;
     });
 
     const resultContainer = document.getElementById(`${type}Result`);
     resultContainer.innerHTML = resultArray.join('<br>');
 };
+
 
 // This function retrieves the appropriate conversion function based on the conversion type and the input unit. The returned function can be used to convert a single value.
 const getConversionFunction = (type, fromUnit) => {
