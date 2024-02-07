@@ -20,27 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
             handleConversion('temperature');
         });
     }
-
-    const weightArrayButton = document.getElementById('weightArrayButton');
-    if (weightArrayButton) {
-        weightArrayButton.addEventListener('click', function () {
-            handleConversion('weight');
-        });
-    }
-
-    const distanceArrayButton = document.getElementById('distanceArrayButton');
-    if (distanceArrayButton) {
-        distanceArrayButton.addEventListener('click', function () {
-            handleConversion('distance');
-        });
-    }
-
-    const temperatureArrayButton = document.getElementById('temperatureArrayButton');
-    if (temperatureArrayButton) {
-        temperatureArrayButton.addEventListener('click', function () {
-            handleConversion('temperature');
-        });
-    }
 });
 
 // Conversion functions
